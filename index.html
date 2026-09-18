@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang Chủ Học Tiếng Trung</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .header h1 {
+      font-size: 2.5rem;
+      color: #38bdf8;
+      margin-bottom: 10px;
+    }
+    .header p {
+      color: #94a3b8;
+      font-size: 1.1rem;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      width: 100%;
+      max-width: 1000px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 30px;
+      text-align: center;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #38bdf8;
+      box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.3);
+    }
+    .card .icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+    .card h2 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: #f8fafc;
+    }
+    .card p {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .card .btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #0284c7;
+      color: #ffffff;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .card:hover .btn {
+      background-color: #38bdf8;
+      color: #0f172a;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Hệ Thống Học Tiếng Trung</h1>
+    <p>Chọn cấp độ bài học để bắt đầu</p>
+  </div>
+
+  <div class="container">
+    <!-- Phần 1: HSK 1 -->
+    <a href="hsk1.html" class="card">
+      <div class="icon">📘</div>
+      <h2>HSK 1</h2>
+      <p>Bài học dành cho người mới bắt đầu, từ vựng và ngữ pháp cơ bản.</p>
+      <div class="btn">Vào học</div>
+    </a>
+
+    <!-- Phần 2: HSK 2 -->
+    <a href="hsk2.html" class="card">
+      <div class="icon">📙</div>
+      <h2>HSK 2</h2>
+      <p>Nâng cao từ vựng, giao tiếp thông dụng hàng ngày.</p>
+      <div class="btn">Vào học</div>
+    </a>
+
+    <!-- Phần 3: HSK 3 -->
+    <a href="hsk3.html" class="card">
+      <div class="icon">📕</div>
+      <h2>HSK 3</h2>
+      <p>Mở rộng câu phức, từ vựng trung cấp và luyện phản xạ.</p>
+      <div class="btn">Vào học</div>
+    </a>
+  </div>
+
+</body>
+</html>
