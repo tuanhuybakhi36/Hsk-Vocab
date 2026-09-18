@@ -25,12 +25,23 @@
 <body class="bg-slate-50 min-h-screen text-slate-800 transition-colors duration-300">
 
     <div class="max-w-4xl mx-auto px-4 py-6 md:py-10">
+        
+        <!-- DÒNG 29: Thẻ <a> Quay lại trang HSK 1 -->
+        <div class="mb-4">
+            <a href="hsk1.html" class="inline-flex items-center text-sm font-semibold text-slate-500 hover:text-red-600 transition-colors bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Quay lại danh mục HSK 1
+            </a>
+        </div>
+
         <!-- Header -->
         <header class="text-center mb-6 md:mb-8">
             <h1 class="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-amber-600 mb-2">
                 Trắc Nghiệm HSK 1 (3.0)
             </h1>
-            <p class="text-slate-500 font-medium">Học & Phản xạ 100 từ vựng chuẩn HSK 1 mới</p>
+            <p class="text-slate-500 font-medium">Học & Phản xạ 100 từ vựng chuẩn HSK 1 mới (Từ 1 - 100)</p>
         </header>
 
         <!-- Main Card Container -->
@@ -444,11 +455,31 @@
             loadQuestion();
         }
 
+        // Restart same set
+        function restartQuiz() {
+            if (incorrectReviews.length === 0 && currentQuestions.length === 0) {
+                startQuiz();
+                return;
+            }
+            currentIndex = 0;
+            score = { correct: 0, incorrect: 0 };
+            incorrectReviews = [];
+            hasAnswered = false;
+
+            const orderMode = document.querySelector('input[name="order-mode"]:checked').value;
+            if (orderMode === 'random') {
+                currentQuestions = shuffle([...currentQuestions]);
+            }
+
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+
+            loadQuestion();
+        }
+
         // Special session for mistake review
         function startMistakesOnlyQuiz() {
             currentQuestions = shuffle([...incorrectReviews]);
-            currentPool = [...vocabulary];
-
             currentIndex = 0;
             score = { correct: 0, incorrect: 0 };
             incorrectReviews = [];
@@ -520,144 +551,109 @@
             hasAnswered = true;
             selectedBtn = btn;
 
+            const current = currentQuestions[currentIndex];
             const isCorrect = selectedChoice === correctChoice;
-            const container = document.getElementById('options-container');
-            const buttons = container.querySelectorAll('button');
 
             const feedbackContainer = document.getElementById('feedback-container');
             const feedbackIcon = document.getElementById('feedback-icon');
             const feedbackTitle = document.getElementById('feedback-title');
             const feedbackDesc = document.getElementById('feedback-desc');
+            const options = document.querySelectorAll('#options-container button');
 
-            buttons.forEach(b => {
-                const text = b.querySelector('.option-text').innerText;
-                const prefixSpan = b.querySelector('span');
+            options.forEach(b => {
+                b.classList.add('pointer-events-none');
+                const optText = b.querySelector('.option-text').innerText;
+                const badge = b.querySelector('span');
 
-                if (text === correctChoice) {
-                    b.classList.remove('border-slate-200', 'hover:border-red-400', 'hover:bg-red-50/20');
-                    b.classList.add('border-emerald-500', 'bg-emerald-50/80', 'correct-pulse');
-                    prefixSpan.classList.remove('bg-slate-100', 'text-slate-600');
-                    prefixSpan.classList.add('bg-emerald-500', 'text-white');
+                if (optText === correctChoice) {
+                    b.classList.remove('bg-white', 'border-slate-200');
+                    b.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-800');
+                    badge.classList.remove('bg-slate-100', 'text-slate-600');
+                    badge.classList.add('bg-emerald-500', 'text-white');
                 } else if (b === btn && !isCorrect) {
-                    b.classList.remove('border-slate-200', 'hover:border-red-400', 'hover:bg-red-50/20');
-                    b.classList.add('border-rose-500', 'bg-rose-50/80');
-                    prefixSpan.classList.remove('bg-slate-100', 'text-slate-600');
-                    prefixSpan.classList.add('bg-rose-500', 'text-white');
+                    b.classList.remove('bg-white', 'border-slate-200');
+                    b.classList.add('bg-rose-50', 'border-rose-400', 'text-rose-800');
+                    badge.classList.remove('bg-slate-100', 'text-slate-600');
+                    badge.classList.add('bg-rose-500', 'text-white');
+                } else {
+                    b.classList.add('opacity-50');
                 }
-                b.classList.add('cursor-default');
             });
 
             if (isCorrect) {
                 score.correct++;
-                feedbackContainer.className = "flex items-center justify-between p-4 bg-emerald-50 border border-emerald-200 rounded-2xl";
-                feedbackIcon.className = "w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center text-white text-xl font-bold flex-shrink-0";
+                btn.classList.add('correct-pulse');
+
+                feedbackContainer.className = "p-4 rounded-xl flex items-center justify-between transition-all bg-emerald-50 border border-emerald-200 text-emerald-800";
+                feedbackIcon.className = "w-10 h-10 rounded-full flex items-center justify-center text-white text-xl flex-shrink-0 bg-emerald-500";
                 feedbackIcon.innerHTML = "✓";
                 feedbackTitle.innerText = "Chính xác!";
-                feedbackTitle.className = "font-extrabold text-emerald-800 text-sm md:text-base";
-                feedbackDesc.innerText = "Bạn đã nhớ rất tốt từ vựng này!";
+                feedbackDesc.innerText = `Nghĩa: ${current.meaning}`;
             } else {
                 score.incorrect++;
-                const current = currentQuestions[currentIndex];
                 incorrectReviews.push(current);
 
-                feedbackContainer.className = "flex items-center justify-between p-4 bg-rose-50 border border-rose-200 rounded-2xl";
-                feedbackIcon.className = "w-10 h-10 rounded-full bg-rose-500 flex items-center justify-center text-white text-xl font-bold flex-shrink-0";
-                feedbackIcon.innerHTML = "✗";
+                feedbackContainer.className = "p-4 rounded-xl flex items-center justify-between transition-all bg-rose-50 border border-rose-200 text-rose-800";
+                feedbackIcon.className = "w-10 h-10 rounded-full flex items-center justify-center text-white text-xl flex-shrink-0 bg-rose-500";
+                feedbackIcon.innerHTML = "✕";
                 feedbackTitle.innerText = "Chưa chính xác!";
-                feedbackTitle.className = "font-extrabold text-rose-800 text-sm md:text-base";
-                feedbackDesc.innerText = `Nghĩa đúng: "${correctChoice}"`;
+                feedbackDesc.innerText = `Đáp án đúng là: ${correctChoice}`;
             }
 
+            document.getElementById('correct-count').innerText = score.correct;
+            document.getElementById('incorrect-count').innerText = score.incorrect;
             feedbackContainer.classList.remove('hidden');
-
-            const nextBtn = document.getElementById('next-btn');
-            if (currentIndex === currentQuestions.length - 1) {
-                nextBtn.innerHTML = `
-                    <span>Xem kết quả</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4" />
-                    </svg>
-                `;
-                nextBtn.className = "px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl transition active:scale-95 shadow-md flex items-center space-x-1.5 flex-shrink-0";
-            } else {
-                nextBtn.innerHTML = `
-                    <span>Tiếp tục</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
-                    </svg>
-                `;
-                nextBtn.className = "px-6 py-2.5 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-xl transition active:scale-95 shadow-md flex items-center space-x-1.5 flex-shrink-0";
-            }
         }
 
-        // Navigate questions
+        // Advance to next question or show finish screen
         function nextQuestion() {
-            if (currentIndex < currentQuestions.length - 1) {
-                currentIndex++;
+            currentIndex++;
+            if (currentIndex < currentQuestions.length) {
                 loadQuestion();
             } else {
                 showResults();
             }
         }
 
-        // Display results
+        // Render summary screen
         function showResults() {
             document.getElementById('quiz-screen').classList.add('hidden');
             document.getElementById('result-screen').classList.remove('hidden');
 
             const total = currentQuestions.length;
-            const percentage = Math.round((score.correct / total) * 100);
+            const percentage = total > 0 ? Math.round((score.correct / total) * 100) : 0;
 
             document.getElementById('final-score').innerText = `${percentage}%`;
             document.getElementById('final-correct').innerText = score.correct;
             document.getElementById('final-incorrect').innerText = score.incorrect;
 
-            const listContainer = document.getElementById('mistake-list');
+            const mistakeListEl = document.getElementById('mistake-list');
             const reviewBtn = document.getElementById('review-mistakes-btn');
-            listContainer.innerHTML = '';
+
+            mistakeListEl.innerHTML = '';
 
             if (incorrectReviews.length === 0) {
                 reviewBtn.classList.add('hidden');
-                listContainer.innerHTML = `
-                    <div class="p-8 text-center text-slate-500">
-                        🎉 Tuyệt vời! Bạn không làm sai câu nào trong đợt ôn tập này!
+                mistakeListEl.innerHTML = `
+                    <div class="p-6 text-center text-slate-400 text-sm">
+                        🎉 Xuất sắc! Bạn không trả lời sai từ nào trong lượt này.
                     </div>
                 `;
             } else {
                 reviewBtn.classList.remove('hidden');
-                incorrectReviews.forEach((item) => {
+                incorrectReviews.forEach(item => {
                     const row = document.createElement('div');
-                    row.className = "flex justify-between items-center p-4 hover:bg-slate-100 transition";
+                    row.className = "p-3.5 flex items-center justify-between hover:bg-slate-100/60 transition";
                     row.innerHTML = `
                         <div class="flex items-center space-x-3">
-                            <span class="text-xl font-extrabold text-slate-800">${item.word}</span>
-                            <span class="text-sm text-red-500 font-semibold">${item.pinyin}</span>
+                            <span class="font-extrabold text-slate-800 text-lg">${item.word}</span>
+                            <span class="text-sm font-semibold text-red-500">${item.pinyin}</span>
                         </div>
-                        <div class="text-sm text-slate-600 font-bold text-right">
-                            ${item.meaning}
-                        </div>
+                        <span class="text-xs font-medium text-slate-600">${item.meaning}</span>
                     `;
-                    listContainer.appendChild(row);
+                    mistakeListEl.appendChild(row);
                 });
             }
-        }
-
-        // Restart with current setup
-        function restartQuiz() {
-            currentIndex = 0;
-            score = { correct: 0, incorrect: 0 };
-            incorrectReviews = [];
-            hasAnswered = false;
-
-            document.getElementById('result-screen').classList.add('hidden');
-            document.getElementById('quiz-screen').classList.remove('hidden');
-
-            const orderMode = document.querySelector('input[name="order-mode"]:checked').value;
-            if (orderMode === 'random') {
-                currentQuestions = shuffle([...currentQuestions]);
-            }
-
-            loadQuestion();
         }
     </script>
 </body>
