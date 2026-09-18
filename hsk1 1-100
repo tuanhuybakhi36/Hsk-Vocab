@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trắc nghiệm Từ vựng HSK 1 (1-100)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .correct-pulse {
+            animation: correctSuccess 0.4s ease-out;
+        }
+        @keyframes correctSuccess {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 transition-colors duration-300">
+
+    <div class="max-w-4xl mx-auto px-4 py-6 md:py-10">
+        <!-- Header -->
+        <header class="text-center mb-6 md:mb-8">
+            <h1 class="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-amber-600 mb-2">
+                Trắc Nghiệm HSK 1 (3.0)
+            </h1>
+            <p class="text-slate-500 font-medium">Học & Phản xạ 100 từ vựng chuẩn HSK 1 mới</p>
+        </header>
+
+        <!-- Main Card Container -->
+        <div class="bg-white rounded-3xl shadow-xl p-5 md:p-8 border border-slate-100 transition-all duration-300">
+            
+            <!-- Setup Screen -->
+            <div id="setup-screen" class="space-y-6">
+                <div class="text-center py-2">
+                    <div class="w-20 h-20 bg-gradient-to-br from-red-100 to-amber-100 text-red-600 rounded-2xl flex items-center justify-center mx-auto text-3xl mb-4 font-extrabold shadow-md">
+                        HSK 1
+                    </div>
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">Cấu hình bài luyện tập</h2>
+                    <p class="text-slate-500 max-w-md mx-auto text-sm">Chọn nhóm từ vựng và số lượng câu hỏi để bắt đầu luyện phản xạ.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Step 1: Select Vocabulary Group -->
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">1. Chọn nhóm từ vựng cần ôn:</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                            <label class="flex items-center p-3 bg-slate-50 border border-slate-200 hover:border-red-300 rounded-xl cursor-pointer hover:bg-slate-100/50 transition">
+                                <input type="radio" name="vocab-range" value="group1" checked class="w-4 h-4 text-red-600 focus:ring-red-500">
+                                <div class="ml-3">
+                                    <span class="block font-semibold text-slate-800 text-sm">Nhóm 1 (1 - 20)</span>
+                                    <span class="block text-xs text-slate-400">Từ "爱" đến "北边"</span>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center p-3 bg-slate-50 border border-slate-200 hover:border-red-300 rounded-xl cursor-pointer hover:bg-slate-100/50 transition">
+                                <input type="radio" name="vocab-range" value="group2" class="w-4 h-4 text-red-600 focus:ring-red-500">
+                                <div class="ml-3">
+                                    <span class="block font-semibold text-slate-800 text-sm">Nhóm 2 (21 - 40)</span>
+                                    <span class="block text-xs text-slate-400">Từ "北京" đến "唱"</span>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center p-3 bg-slate-50 border border-slate-200 hover:border-red-300 rounded-xl cursor-pointer hover:bg-slate-100/50 transition">
+                                <input type="radio" name="vocab-range" value="group3" class="w-4 h-4 text-red-600 focus:ring-red-500">
+                                <div class="ml-3">
+                                    <span class="block font-semibold text-slate-800 text-sm">Nhóm 3 (41 - 60)</span>
+                                    <span class="block text-xs text-slate-400">Từ "唱歌" đến "打球"</span>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center p-3 bg-slate-50 border border-slate-200 hover:border-red-300 rounded-xl cursor-pointer hover:bg-slate-100/50 transition">
+                                <input type="radio" name="vocab-range" value="group4" class="w-4 h-4 text-red-600 focus:ring-red-500">
+                                <div class="ml-3">
+                                    <span class="block font-semibold text-slate-800 text-sm">Nhóm 4 (61 - 80)</span>
+                                    <span class="block text-xs text-slate-400">Từ "大" đến "电视"</span>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center p-3 bg-slate-50 border border-slate-200 hover:border-red-300 rounded-xl cursor-pointer hover:bg-slate-100/50 transition">
+                                <input type="radio" name="vocab-range" value="group5" class="w-4 h-4 text-red-600 focus:ring-red-500">
+                                <div class="ml-3">
+                                    <span class="block font-semibold text-slate-800 text-sm">Nhóm 5 (81 - 100)</span>
+                                    <span class="block text-xs text-slate-400">Từ "电视机" đến "饭店"</span>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center p-3 bg-slate-50 border border-slate-200 hover:border-red-300 rounded-xl cursor-pointer hover:bg-slate-100/50 transition">
+                                <input type="radio" name="vocab-range" value="all" class="w-4 h-4 text-red-600 focus:ring-red-500">
+                                <div class="ml-3">
+                                    <span class="block font-semibold text-slate-800 text-sm">Tất cả (1 - 100)</span>
+                                    <span class="block text-xs text-slate-400">Gộp chung 100 từ</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Select Question Mode -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">2. Số lượng câu hỏi:</label>
+                            <select id="question-count" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-red-500 focus:border-red-500">
+                                <option value="10">Luyện nhanh (10 câu)</option>
+                                <option value="20" selected>Bộ 20 câu (Theo nhóm)</option>
+                                <option value="all">Toàn bộ từ trong nhóm đã chọn</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">3. Thứ tự câu hỏi:</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <label class="flex items-center justify-center p-3 bg-slate-50 border border-slate-200 hover:border-red-200 rounded-xl cursor-pointer transition">
+                                    <input type="radio" name="order-mode" value="sequential" checked class="w-4 h-4 text-red-600">
+                                    <span class="ml-2 text-xs font-semibold text-slate-700">Theo thứ tự</span>
+                                </label>
+                                <label class="flex items-center justify-center p-3 bg-slate-50 border border-slate-200 hover:border-red-200 rounded-xl cursor-pointer transition">
+                                    <input type="radio" name="order-mode" value="random" class="w-4 h-4 text-red-600">
+                                    <span class="ml-2 text-xs font-semibold text-slate-700">Ngẫu nhiên</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Start Action Button -->
+                <button onclick="startQuiz()" class="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-2xl shadow-lg shadow-red-100 transition duration-200 transform active:scale-[0.99] flex items-center justify-center space-x-2">
+                    <span>Bắt Đầu Ôn Tập</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Quiz Screen -->
+            <div id="quiz-screen" class="hidden space-y-6">
+                <!-- Progress Header -->
+                <div class="flex justify-between items-center text-sm font-medium text-slate-500">
+                    <div>
+                        <span>Tiến trình:</span>
+                        <span id="current-question-num" class="text-red-600 font-bold">1</span>/<span id="total-questions-num" class="font-bold">20</span>
+                    </div>
+                    <div class="flex space-x-4">
+                        <span class="text-emerald-600 flex items-center"><span class="w-2 h-2 rounded-full bg-emerald-500 mr-1.5"></span>Đúng: <span id="correct-count" class="font-bold ml-1">0</span></span>
+                        <span class="text-rose-500 flex items-center"><span class="w-2 h-2 rounded-full bg-rose-500 mr-1.5"></span>Sai: <span id="incorrect-count" class="font-bold ml-1">0</span></span>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+                    <div id="progress-bar" class="bg-gradient-to-r from-red-500 to-amber-500 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+
+                <!-- Question Card Area -->
+                <div class="text-center py-10 px-4 bg-gradient-to-b from-slate-50 to-slate-100/50 rounded-2xl border border-slate-100 relative overflow-hidden shadow-sm">
+                    <span id="word-level" class="absolute top-4 left-4 px-2.5 py-1 bg-red-50 text-red-700 text-xs font-bold rounded-lg uppercase tracking-wider">
+                        HSK 1
+                    </span>
+                    <span id="word-id" class="absolute top-4 right-4 text-xs font-bold text-slate-400">
+                        #1
+                    </span>
+                    <h3 id="question-char" class="text-5xl md:text-6xl font-extrabold text-slate-800 tracking-wide mb-3">
+                        爱
+                    </h3>
+                    <p id="question-pinyin" class="text-2xl text-red-500 font-semibold tracking-wide">
+                        ài
+                    </p>
+                </div>
+
+                <!-- Option Selection Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="options-container">
+                    <!-- Options generated dynamically -->
+                </div>
+
+                <!-- Next and Feedback Controls -->
+                <div id="feedback-container" class="hidden p-4 rounded-xl flex items-center justify-between transition-all">
+                    <div class="flex items-center space-x-3">
+                        <div id="feedback-icon" class="w-10 h-10 rounded-full flex items-center justify-center text-white text-xl flex-shrink-0"></div>
+                        <div>
+                            <p id="feedback-title" class="font-bold"></p>
+                            <p id="feedback-desc" class="text-xs text-slate-500"></p>
+                        </div>
+                    </div>
+                    <button id="next-btn" onclick="nextQuestion()" class="px-6 py-2.5 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-xl transition active:scale-95 shadow-md flex items-center space-x-1.5 flex-shrink-0">
+                        <span>Tiếp Tục</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Result Screen -->
+            <div id="result-screen" class="hidden space-y-8">
+                <div class="text-center py-4">
+                    <div class="w-20 h-20 bg-red-50 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4 border-4 border-red-100 shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                        </svg>
+                    </div>
+                    <h2 class="text-3xl font-extrabold text-slate-800">Hoàn Thành Đợt Luyện Tập!</h2>
+                    <p class="text-slate-500 mt-1 text-sm">Kết quả kiểm tra phản xạ từ vựng HSK 1 của bạn.</p>
+                </div>
+
+                <!-- Scores summary Cards -->
+                <div class="grid grid-cols-3 gap-3 md:gap-4">
+                    <div class="bg-red-50/50 border border-red-100 rounded-2xl p-4 text-center">
+                        <span class="block text-[10px] md:text-xs text-red-600 font-bold uppercase tracking-wider">Tỉ lệ đúng</span>
+                        <span id="final-score" class="text-2xl md:text-3xl font-extrabold text-red-700">0%</span>
+                    </div>
+                    <div class="bg-emerald-50/50 border border-emerald-100 rounded-2xl p-4 text-center">
+                        <span class="block text-[10px] md:text-xs text-emerald-600 font-bold uppercase tracking-wider">Số câu đúng</span>
+                        <span id="final-correct" class="text-2xl md:text-3xl font-extrabold text-emerald-700">0</span>
+                    </div>
+                    <div class="bg-rose-50/50 border border-rose-100 rounded-2xl p-4 text-center">
+                        <span class="block text-[10px] md:text-xs text-rose-500 font-bold uppercase tracking-wider">Số câu sai</span>
+                        <span id="final-incorrect" class="text-2xl md:text-3xl font-extrabold text-rose-700">0</span>
+                    </div>
+                </div>
+
+                <!-- Mistake list review -->
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-bold text-slate-700 flex items-center text-sm md:text-base">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                            Danh sách từ cần lưu ý:
+                        </h3>
+                        <button id="review-mistakes-btn" onclick="startMistakesOnlyQuiz()" class="hidden px-3.5 py-1.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-lg text-xs shadow transition active:scale-95">
+                            Ôn lại riêng câu sai
+                        </button>
+                    </div>
+                    <div id="mistake-list" class="max-h-60 overflow-y-auto border border-slate-100 rounded-2xl divide-y divide-slate-100 bg-slate-50">
+                        <!-- Dynamic mistakes list -->
+                    </div>
+                </div>
+
+                <!-- Navigation buttons -->
+                <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                    <button onclick="restartQuiz()" class="flex-1 py-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl shadow-md transition active:scale-95 text-center text-sm">
+                        Làm Lại Đợt Này
+                    </button>
+                    <button onclick="goToSetup()" class="flex-1 py-4 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl transition active:scale-95 text-center text-sm">
+                        Thay Đổi Tùy Chọn
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Full HSK 1 Vocabulary Database (1 - 100)
+        const vocabulary = [
+            // Group 1: 1 - 20
+            { id: 1, word: "爱", pinyin: "ài", meaning: "yêu, thích" },
+            { id: 2, word: "爱好", pinyin: "àihào", meaning: "sở thích" },
+            { id: 3, word: "八", pinyin: "bā", meaning: "số 8" },
+            { id: 4, word: "爸爸｜爸", pinyin: "bàba｜bà", meaning: "bố, ba, cha" },
+            { id: 5, word: "吧", pinyin: "ba", meaning: "nào, nhé, chứ, đi (trợ từ)" },
+            { id: 6, word: "白", pinyin: "bái", meaning: "trắng" },
+            { id: 7, word: "白天", pinyin: "báitiān", meaning: "ban ngày" },
+            { id: 8, word: "百", pinyin: "bǎi", meaning: "một trăm" },
+            { id: 9, word: "班", pinyin: "bān", meaning: "lớp" },
+            { id: 10, word: "半", pinyin: "bàn", meaning: "một nửa" },
+            { id: 11, word: "半年", pinyin: "bàn nián", meaning: "nửa năm" },
+            { id: 12, word: "半天", pinyin: "bàn tiān", meaning: "nửa ngày" },
+            { id: 13, word: "帮", pinyin: "bāng", meaning: "giúp đỡ" },
+            { id: 14, word: "帮忙", pinyin: "bāngmáng", meaning: "giúp đỡ" },
+            { id: 15, word: "包", pinyin: "bāo", meaning: "bao, cái túi; gói, bọc" },
+            { id: 16, word: "包子", pinyin: "bāozi", meaning: "bánh bao" },
+            { id: 17, word: "杯", pinyin: "bēi", meaning: "cốc, ly" },
+            { id: 18, word: "杯子", pinyin: "bēizi", meaning: "cốc, chén, ly" },
+            { id: 19, word: "北", pinyin: "běi", meaning: "bắc" },
+            { id: 20, word: "北边", pinyin: "běibiān", meaning: "phía Bắc" },
+
+            // Group 2: 21 - 40
+            { id: 21, word: "北京", pinyin: "Běijīng", meaning: "Bắc Kinh" },
+            { id: 22, word: "本", pinyin: "běn", meaning: "cuốn, quyển, tập" },
+            { id: 23, word: "本子", pinyin: "běn zi", meaning: "vở, cuốn vở" },
+            { id: 24, word: "比", pinyin: "bǐ", meaning: "so, so với" },
+            { id: 25, word: "别", pinyin: "bié", meaning: "đừng, không được" },
+            { id: 26, word: "别的", pinyin: "biéde", meaning: "cái khác" },
+            { id: 27, word: "别人", pinyin: "biérén", meaning: "người khác, người ta" },
+            { id: 28, word: "病", pinyin: "bìng", meaning: "bệnh" },
+            { id: 29, word: "病人", pinyin: "bìngrén", meaning: "bệnh nhân" },
+            { id: 30, word: "不大", pinyin: "bú dà", meaning: "nhỏ, không lớn" },
+            { id: 31, word: "不对", pinyin: "búduì", meaning: "không đúng" },
+            { id: 32, word: "不客气", pinyin: "bú kèqi", meaning: "không có gì" },
+            { id: 33, word: "不用", pinyin: "búyòng", meaning: "không cần" },
+            { id: 34, word: "不", pinyin: "bù", meaning: "không" },
+            { id: 35, word: "菜", pinyin: "cài", meaning: "đồ ăn, món ăn" },
+            { id: 36, word: "差", pinyin: "chà", meaning: "thiếu, kém" },
+            { id: 37, word: "茶", pinyin: "chá", meaning: "trà" },
+            { id: 38, word: "常", pinyin: "cháng", meaning: "thường" },
+            { id: 39, word: "常常", pinyin: "chángcháng", meaning: "thường thường" },
+            { id: 40, word: "唱", pinyin: "chàng", meaning: "hát" },
+
+            // Group 3: 41 - 60
+            { id: 41, word: "唱歌", pinyin: "chànggē", meaning: "hát, ca hát" },
+            { id: 42, word: "车", pinyin: "chē", meaning: "xe" },
+            { id: 43, word: "车票", pinyin: "chēpiào", meaning: "vé xe" },
+            { id: 44, word: "车上", pinyin: "chē shang", meaning: "trên xe" },
+            { id: 45, word: "车站", pinyin: "chēzhàn", meaning: "bến xe" },
+            { id: 46, word: "吃", pinyin: "chī", meaning: "ăn" },
+            { id: 47, word: "吃饭", pinyin: "chīfàn", meaning: "ăn cơm" },
+            { id: 48, word: "出", pinyin: "chū", meaning: "ra, xuất" },
+            { id: 49, word: "出来", pinyin: "chūlái", meaning: "xuất hiện, đi ra" },
+            { id: 50, word: "出去", pinyin: "chūqù", meaning: "ra, ra ngoài" },
+            { id: 51, word: "穿", pinyin: "chuān", meaning: "mặc" },
+            { id: 52, word: "床", pinyin: "chuáng", meaning: "giường, đệm" },
+            { id: 53, word: "次", pinyin: "cì", meaning: "lần" },
+            { id: 54, word: "从", pinyin: "cóng", meaning: "từ, qua, theo" },
+            { id: 55, word: "错", pinyin: "cuò", meaning: "sai" },
+            { id: 56, word: "打", pinyin: "dǎ", meaning: "đánh, bắt" },
+            { id: 57, word: "打车", pinyin: "dǎchē", meaning: "bắt xe" },
+            { id: 58, word: "打电话", pinyin: "dǎ diànhuà", meaning: "gọi điện" },
+            { id: 59, word: "打开", pinyin: "dǎkāi", meaning: "mở, mở ra" },
+            { id: 60, word: "打球", pinyin: "dǎ qiú", meaning: "chơi bóng" },
+
+            // Group 4: 61 - 80
+            { id: 61, word: "大", pinyin: "dà", meaning: "to, lớn" },
+            { id: 62, word: "大学", pinyin: "dàxué", meaning: "đại học" },
+            { id: 63, word: "大学生", pinyin: "dàxuéshēng", meaning: "sinh viên đại học" },
+            { id: 64, word: "到", pinyin: "dào", meaning: "đến, tới" },
+            { id: 65, word: "得到", pinyin: "dédào", meaning: "đạt được, nhận được" },
+            { id: 66, word: "地", pinyin: "de", meaning: "biểu thị từ trước nó là trạng ngữ" },
+            { id: 67, word: "的", pinyin: "de", meaning: "(biểu thị sự sở hữu) của" },
+            { id: 68, word: "等", pinyin: "děng", meaning: "đợi, chờ" },
+            { id: 69, word: "地", pinyin: "dì", meaning: "đất, lục địa; trái đất" },
+            { id: 70, word: "地点", pinyin: "dìdiǎn", meaning: "địa điểm, nơi chốn" },
+            { id: 71, word: "地方", pinyin: "dìfang", meaning: "nơi, địa phương" },
+            { id: 72, word: "地上", pinyin: "dìshang", meaning: "trên mặt đất" },
+            { id: 73, word: "地图", pinyin: "dìtú", meaning: "bản đồ" },
+            { id: 74, word: "弟弟| 弟", pinyin: "dìdi|dì", meaning: "em trai" },
+            { id: 75, word: "第（第二）", pinyin: "dì（dì-èr）", meaning: "thứ ... (số thứ tự)" },
+            { id: 76, word: "点", pinyin: "diǎn", meaning: "ít, chút, hơi" },
+            { id: 77, word: "电", pinyin: "diàn", meaning: "điện, pin" },
+            { id: 78, word: "电话", pinyin: "diànhuà", meaning: "điện thoại" },
+            { id: 79, word: "电脑", pinyin: "diànnǎo", meaning: "máy tính" },
+            { id: 80, word: "电视", pinyin: "diànshì", meaning: "truyền hình; TV" },
+
+            // Group 5: 81 - 100
+            { id: 81, word: "电视机", pinyin: "diànshìjī", meaning: "(chiếc) TV" },
+            { id: 82, word: "电影", pinyin: "diànyǐng", meaning: "điện ảnh, phim (nói chung)" },
+            { id: 83, word: "电影院", pinyin: "diànyǐngyuàn", meaning: "rạp chiếu phim" },
+            { id: 84, word: "东", pinyin: "dōng", meaning: "đông" },
+            { id: 85, word: "东边", pinyin: "dōngbian", meaning: "phía đông" },
+            { id: 86, word: "东西", pinyin: "dōngxi", meaning: "đồ đạc, đồ, vật" },
+            { id: 87, word: "动", pinyin: "dòng", meaning: "động, chạm" },
+            { id: 88, word: "动作", pinyin: "dòngzuò", meaning: "động tác, hoạt động" },
+            { id: 89, word: "都", pinyin: "dōu", meaning: "đều" },
+            { id: 90, word: "读", pinyin: "dú", meaning: "đọc" },
+            { id: 91, word: "读书", pinyin: "dúshū", meaning: "đọc sách" },
+            { id: 92, word: "对", pinyin: "duì", meaning: "đúng" },
+            { id: 93, word: "对不起", pinyin: "duìbuqǐ", meaning: "xin lỗi" },
+            { id: 94, word: "多", pinyin: "duō", meaning: "nhiều / (đại từ) bao nhiêu" },
+            { id: 95, word: "多少", pinyin: "duōshǎo", meaning: "bao nhiêu" },
+            { id: 96, word: "饿", pinyin: "è", meaning: "đói" },
+            { id: 97, word: "儿子", pinyin: "érzi", meaning: "con trai" },
+            { id: 98, word: "二", pinyin: "èr", meaning: "số 2" },
+            { id: 99, word: "饭", pinyin: "fàn", meaning: "cơm" },
+            { id: 100, word: "饭店", pinyin: "fàndiàn", meaning: "quán ăn / nhà hàng" }
+        ];
+
+        // State variables
+        let currentPool = [];
+        let currentQuestions = [];
+        let currentIndex = 0;
+        let score = { correct: 0, incorrect: 0 };
+        let hasAnswered = false;
+        let incorrectReviews = [];
+        let selectedBtn = null;
+
+        // Shuffle helper
+        function shuffle(array) {
+            let currIndex = array.length, randomIndex;
+            while (currIndex != 0) {
+                randomIndex = Math.floor(Math.random() * currIndex);
+                currIndex--;
+                [array[currIndex], array[randomIndex]] = [array[randomIndex], array[currIndex]];
+            }
+            return array;
+        }
+
+        // Return to setup screen
+        function goToSetup() {
+            document.getElementById('setup-screen').classList.remove('hidden');
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.add('hidden');
+        }
+
+        // Initialize Quiz session
+        function startQuiz() {
+            const rangeMode = document.querySelector('input[name="vocab-range"]:checked').value;
+            const orderMode = document.querySelector('input[name="order-mode"]:checked').value;
+            const questionCountVal = document.getElementById('question-count').value;
+
+            // Filter vocabulary range
+            if (rangeMode === 'group1') {
+                currentPool = vocabulary.filter(v => v.id >= 1 && v.id <= 20);
+            } else if (rangeMode === 'group2') {
+                currentPool = vocabulary.filter(v => v.id >= 21 && v.id <= 40);
+            } else if (rangeMode === 'group3') {
+                currentPool = vocabulary.filter(v => v.id >= 41 && v.id <= 60);
+            } else if (rangeMode === 'group4') {
+                currentPool = vocabulary.filter(v => v.id >= 61 && v.id <= 80);
+            } else if (rangeMode === 'group5') {
+                currentPool = vocabulary.filter(v => v.id >= 81 && v.id <= 100);
+            } else {
+                currentPool = [...vocabulary];
+            }
+
+            // Order questions
+            if (orderMode === 'random') {
+                currentQuestions = shuffle([...currentPool]);
+            } else {
+                currentQuestions = [...currentPool];
+            }
+
+            // Cap question count if needed
+            let limit = currentQuestions.length;
+            if (questionCountVal !== 'all') {
+                limit = Math.min(parseInt(questionCountVal), currentQuestions.length);
+            }
+            currentQuestions = currentQuestions.slice(0, limit);
+
+            // Reset game state
+            currentIndex = 0;
+            score = { correct: 0, incorrect: 0 };
+            incorrectReviews = [];
+            hasAnswered = false;
+
+            // Display active quiz interface
+            document.getElementById('setup-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('result-screen').classList.add('hidden');
+
+            loadQuestion();
+        }
+
+        // Special session for mistake review
+        function startMistakesOnlyQuiz() {
+            currentQuestions = shuffle([...incorrectReviews]);
+            currentPool = [...vocabulary];
+
+            currentIndex = 0;
+            score = { correct: 0, incorrect: 0 };
+            incorrectReviews = [];
+            hasAnswered = false;
+
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+
+            loadQuestion();
+        }
+
+        // Load question content
+        function loadQuestion() {
+            hasAnswered = false;
+            selectedBtn = null;
+
+            document.getElementById('feedback-container').classList.add('hidden');
+
+            const current = currentQuestions[currentIndex];
+
+            // Header progress info
+            document.getElementById('current-question-num').innerText = currentIndex + 1;
+            document.getElementById('total-questions-num').innerText = currentQuestions.length;
+            document.getElementById('correct-count').innerText = score.correct;
+            document.getElementById('incorrect-count').innerText = score.incorrect;
+
+            // Progress bar update
+            const progressPercent = ((currentIndex + 1) / currentQuestions.length) * 100;
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+
+            // Card details
+            document.getElementById('question-char').innerText = current.word;
+            document.getElementById('question-pinyin').innerText = current.pinyin;
+            document.getElementById('word-id').innerText = `#${current.id}`;
+
+            // Generate distractors
+            let choices = [current.meaning];
+            const distractorPool = vocabulary.filter(v => v.meaning !== current.meaning);
+            shuffle(distractorPool);
+
+            for (let i = 0; i < 3; i++) {
+                if (distractorPool[i]) {
+                    choices.push(distractorPool[i].meaning);
+                }
+            }
+
+            shuffle(choices);
+
+            // Options rendering
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+
+            const prefixes = ['A', 'B', 'C', 'D'];
+            choices.forEach((choice, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full p-4 text-left border border-slate-200 hover:border-red-400 hover:bg-red-50/20 rounded-2xl font-medium transition duration-150 flex items-center bg-white shadow-sm active:scale-[0.99]";
+                btn.innerHTML = `
+                    <span class="w-9 h-9 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center font-bold mr-3.5 text-sm flex-shrink-0 transition-colors">${prefixes[idx]}</span>
+                    <span class="text-slate-700 text-base leading-snug font-semibold option-text">${choice}</span>
+                `;
+                btn.onclick = () => selectOption(btn, choice, current.meaning);
+                container.appendChild(btn);
+            });
+        }
+
+        // Option selection behavior
+        function selectOption(btn, selectedChoice, correctChoice) {
+            if (hasAnswered) return;
+            hasAnswered = true;
+            selectedBtn = btn;
+
+            const isCorrect = selectedChoice === correctChoice;
+            const container = document.getElementById('options-container');
+            const buttons = container.querySelectorAll('button');
+
+            const feedbackContainer = document.getElementById('feedback-container');
+            const feedbackIcon = document.getElementById('feedback-icon');
+            const feedbackTitle = document.getElementById('feedback-title');
+            const feedbackDesc = document.getElementById('feedback-desc');
+
+            buttons.forEach(b => {
+                const text = b.querySelector('.option-text').innerText;
+                const prefixSpan = b.querySelector('span');
+
+                if (text === correctChoice) {
+                    b.classList.remove('border-slate-200', 'hover:border-red-400', 'hover:bg-red-50/20');
+                    b.classList.add('border-emerald-500', 'bg-emerald-50/80', 'correct-pulse');
+                    prefixSpan.classList.remove('bg-slate-100', 'text-slate-600');
+                    prefixSpan.classList.add('bg-emerald-500', 'text-white');
+                } else if (b === btn && !isCorrect) {
+                    b.classList.remove('border-slate-200', 'hover:border-red-400', 'hover:bg-red-50/20');
+                    b.classList.add('border-rose-500', 'bg-rose-50/80');
+                    prefixSpan.classList.remove('bg-slate-100', 'text-slate-600');
+                    prefixSpan.classList.add('bg-rose-500', 'text-white');
+                }
+                b.classList.add('cursor-default');
+            });
+
+            if (isCorrect) {
+                score.correct++;
+                feedbackContainer.className = "flex items-center justify-between p-4 bg-emerald-50 border border-emerald-200 rounded-2xl";
+                feedbackIcon.className = "w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center text-white text-xl font-bold flex-shrink-0";
+                feedbackIcon.innerHTML = "✓";
+                feedbackTitle.innerText = "Chính xác!";
+                feedbackTitle.className = "font-extrabold text-emerald-800 text-sm md:text-base";
+                feedbackDesc.innerText = "Bạn đã nhớ rất tốt từ vựng này!";
+            } else {
+                score.incorrect++;
+                const current = currentQuestions[currentIndex];
+                incorrectReviews.push(current);
+
+                feedbackContainer.className = "flex items-center justify-between p-4 bg-rose-50 border border-rose-200 rounded-2xl";
+                feedbackIcon.className = "w-10 h-10 rounded-full bg-rose-500 flex items-center justify-center text-white text-xl font-bold flex-shrink-0";
+                feedbackIcon.innerHTML = "✗";
+                feedbackTitle.innerText = "Chưa chính xác!";
+                feedbackTitle.className = "font-extrabold text-rose-800 text-sm md:text-base";
+                feedbackDesc.innerText = `Nghĩa đúng: "${correctChoice}"`;
+            }
+
+            feedbackContainer.classList.remove('hidden');
+
+            const nextBtn = document.getElementById('next-btn');
+            if (currentIndex === currentQuestions.length - 1) {
+                nextBtn.innerHTML = `
+                    <span>Xem kết quả</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4" />
+                    </svg>
+                `;
+                nextBtn.className = "px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl transition active:scale-95 shadow-md flex items-center space-x-1.5 flex-shrink-0";
+            } else {
+                nextBtn.innerHTML = `
+                    <span>Tiếp tục</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                    </svg>
+                `;
+                nextBtn.className = "px-6 py-2.5 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-xl transition active:scale-95 shadow-md flex items-center space-x-1.5 flex-shrink-0";
+            }
+        }
+
+        // Navigate questions
+        function nextQuestion() {
+            if (currentIndex < currentQuestions.length - 1) {
+                currentIndex++;
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        // Display results
+        function showResults() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+
+            const total = currentQuestions.length;
+            const percentage = Math.round((score.correct / total) * 100);
+
+            document.getElementById('final-score').innerText = `${percentage}%`;
+            document.getElementById('final-correct').innerText = score.correct;
+            document.getElementById('final-incorrect').innerText = score.incorrect;
+
+            const listContainer = document.getElementById('mistake-list');
+            const reviewBtn = document.getElementById('review-mistakes-btn');
+            listContainer.innerHTML = '';
+
+            if (incorrectReviews.length === 0) {
+                reviewBtn.classList.add('hidden');
+                listContainer.innerHTML = `
+                    <div class="p-8 text-center text-slate-500">
+                        🎉 Tuyệt vời! Bạn không làm sai câu nào trong đợt ôn tập này!
+                    </div>
+                `;
+            } else {
+                reviewBtn.classList.remove('hidden');
+                incorrectReviews.forEach((item) => {
+                    const row = document.createElement('div');
+                    row.className = "flex justify-between items-center p-4 hover:bg-slate-100 transition";
+                    row.innerHTML = `
+                        <div class="flex items-center space-x-3">
+                            <span class="text-xl font-extrabold text-slate-800">${item.word}</span>
+                            <span class="text-sm text-red-500 font-semibold">${item.pinyin}</span>
+                        </div>
+                        <div class="text-sm text-slate-600 font-bold text-right">
+                            ${item.meaning}
+                        </div>
+                    `;
+                    listContainer.appendChild(row);
+                });
+            }
+        }
+
+        // Restart with current setup
+        function restartQuiz() {
+            currentIndex = 0;
+            score = { correct: 0, incorrect: 0 };
+            incorrectReviews = [];
+            hasAnswered = false;
+
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+
+            const orderMode = document.querySelector('input[name="order-mode"]:checked').value;
+            if (orderMode === 'random') {
+                currentQuestions = shuffle([...currentQuestions]);
+            }
+
+            loadQuestion();
+        }
+    </script>
+</body>
+</html>
