@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nội dung HSK 1</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 20px;
+    }
+    .top-bar {
+      width: 100%;
+      max-width: 900px;
+      margin-bottom: 20px;
+    }
+    .btn-back {
+      display: inline-block;
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #38bdf8;
+      text-decoration: none;
+      border-radius: 8px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      font-weight: 600;
+    }
+    .header { text-align: center; margin-bottom: 30px; }
+    .header h1 { font-size: 2.2rem; color: #38bdf8; }
+    
+    .list-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+      max-width: 900px;
+    }
+    .part-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-decoration: none;
+      color: white;
+      transition: all 0.2s ease;
+    }
+    .part-card:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: #38bdf8;
+      transform: translateX(5px);
+    }
+    .part-title { font-size: 1.2rem; font-weight: bold; }
+    .part-sub { color: #94a3b8; font-size: 0.9rem; margin-top: 4px; }
+    .arrow { font-size: 1.5rem; color: #38bdf8; }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <!-- LIÊN KẾT 1: Bấm để quay về Trang chủ -->
+    <a href="index.html" class="btn-back">← Quay lại Trang chủ</a>
+  </div>
+
+  <div class="header">
+    <h1>Danh Sách Bài Học HSK 1</h1>
+    <p>Tổng cộng 500 từ vựng được chia làm 5 phần</p>
+  </div>
+
+  <div class="list-container">
+    <!-- LIÊN KẾT 2: Bấm vào mở Part 1 -->
+    <a href="hsk1-part1.html" class="part-card">
+      <div>
+        <div class="part-title">Phần 1: Từ 1 đến 100</div>
+        <div class="part-sub">100 từ vựng cơ bản đầu tiên</div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <!-- LIÊN KẾT 3: Bấm vào mở Part 2 -->
+    <a href="hsk1-part2.html" class="part-card">
+      <div>
+        <div class="part-title">Phần 2: Từ 101 đến 200</div>
+        <div class="part-sub">100 từ vựng tiếp theo</div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <!-- LIÊN KẾT 4: Bấm vào mở Part 3 -->
+    <a href="hsk1-part3.html" class="part-card">
+      <div>
+        <div class="part-title">Phần 3: Từ 201 đến 300</div>
+        <div class="part-sub">100 từ vựng nâng cao nhẹ</div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <!-- LIÊN KẾT 5: Bấm vào mở Part 4 -->
+    <a href="hsk1-part4.html" class="part-card">
+      <div>
+        <div class="part-title">Phần 4: Từ 301 đến 400</div>
+        <div class="part-sub">100 từ vựng chủ đề giao tiếp</div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <!-- LIÊN KẾT 6: Bấm vào mở Part 5 -->
+    <a href="hsk1-part5.html" class="part-card">
+      <div>
+        <div class="part-title">Phần 5: Từ 401 đến 500</div>
+        <div class="part-sub">100 từ vựng hoàn thiện HSK 1</div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+
+</body>
+</html>
