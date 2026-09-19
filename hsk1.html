@@ -3,165 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Danh Sách Từ Vựng HSK 1</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #f8f9fa; /* Màu nền xám nhạt */
-      color: #333333;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-    }
-    /* Thanh điều hướng quay lại */
-    .nav-bar {
-      width: 100%;
-      max-width: 800px;
-      margin-bottom: 20px;
-    }
-    .btn-back {
-      display: inline-block;
-      padding: 8px 18px;
-      background-color: #ea2e2e; /* Màu đỏ chủ đạo */
-      color: #ffffff;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 0.9rem;
-      transition: background 0.2s;
-    }
-    .btn-back:hover {
-      background-color: #c62828;
-    }
-    /* Tiêu đề */
-    .header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .header h1 {
-      font-size: 2rem;
-      font-weight: 800;
-      color: #e53935;
-      margin-bottom: 8px;
-    }
-    .header p {
-      color: #666666;
-      font-size: 0.95rem;
-    }
-    /* Danh sách các trang con */
-    .container {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      width: 100%;
-      max-width: 800px;
-    }
-    .card-page {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 20px 25px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      text-decoration: none;
-      color: inherit;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-      transition: all 0.2s ease;
-    }
-    .card-page:hover {
-      transform: translateX(5px);
-      border-color: #e53935;
-      box-shadow: 0 4px 12px rgba(229, 57, 53, 0.15);
-    }
-    .info h2 {
-      font-size: 1.2rem;
-      color: #1a202c;
-      margin-bottom: 4px;
-    }
-    .info p {
-      color: #718096;
-      font-size: 0.85rem;
-    }
-    .btn-arrow {
-      background-color: #fde8e8;
-      color: #e53935;
-      font-weight: bold;
-      padding: 8px 16px;
-      border-radius: 6px;
-      font-size: 0.9rem;
-    }
-    .card-page:hover .btn-arrow {
-      background-color: #ea2e2e;
-      color: #ffffff;
-    }
-  </style>
+  <title>Từ vựng HSK 1</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-slate-50 min-h-screen text-slate-800 flex flex-col font-sans">
 
-  <!-- Nút quay lại Trang chủ -->
-  <div class="nav-bar">
-    <a href="index.html" class="btn-back">← Trang Chủ</a>
-  </div>
+  <header class="bg-red-700 text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-2 font-bold text-xl hover:text-red-100 transition">
+        <span class="bg-white text-red-700 px-2.5 py-1 rounded-lg text-lg font-black shadow-sm">HSK</span>
+        <span>Học Từ Vựng</span>
+      </a>
+      <nav class="flex gap-2">
+        <a href="index.html" class="px-3.5 py-2 rounded-lg font-medium text-sm transition text-red-100 hover:bg-red-600 hover:text-white">Trang Chủ</a>
+        <a href="hsk1.html" class="px-3.5 py-2 rounded-lg font-medium text-sm transition bg-red-800 text-white shadow-inner">HSK 1</a>
+        <a href="hsk2.html" class="px-3.5 py-2 rounded-lg font-medium text-sm transition text-red-100 hover:bg-red-600 hover:text-white">HSK 2</a>
+        <a href="hsk3.html" class="px-3.5 py-2 rounded-lg font-medium text-sm transition text-red-100 hover:bg-red-600 hover:text-white">HSK 3</a>
+      </nav>
+    </div>
+  </header>
 
-  <div class="header">
-    <h1>Danh Sách Từ Vựng HSK 1</h1>
-    <p>Chọn tập từ vựng (100 từ / phần) để xem chi tiết</p>
-  </div>
+  <main class="max-w-6xl mx-auto px-4 py-10 flex-grow w-full">
+    <section class="text-center mb-10">
+      <span class="inline-block bg-red-100 text-red-700 font-semibold px-4 py-1 rounded-full text-sm mb-3 border border-red-200">
+        Cấp Độ 1
+      </span>
+      <h1 class="text-3xl font-extrabold text-slate-900 mb-2">Danh Mục Từ Vựng HSK 1</h1>
+      <p class="text-slate-600">Chọn phần từ vựng để bắt đầu học và làm bài tập</p>
+    </section>
 
-  <div class="container">
-    <!-- Trang con 1 -->
-    <a href="hsk1-1.html" class="card-page">
-      <div class="info">
-        <h2>Phần 1: Từ 1 - 100</h2>
-        <p>100 từ vựng HSK 1 cơ bản nhất</p>
+    <div class="space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+          <div>
+            <h2 class="text-xl font-bold text-slate-800 mb-1">Phần 1</h2>
+            <p class="text-slate-500 text-sm mb-6">Từ 1 - 100</p>
+          </div>
+          <a href="hsk1-1-100.html" class="w-full text-center bg-red-600 hover:bg-red-700 text-white font-semibold py-2.5 px-4 rounded-xl transition shadow-sm">
+            Xem danh sách
+          </a>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+          <div>
+            <h2 class="text-xl font-bold text-slate-800 mb-1">Phần 2</h2>
+            <p class="text-slate-500 text-sm mb-6">Từ 101 - 200</p>
+          </div>
+          <a href="hsk1-101-200.html" class="w-full text-center bg-red-600 hover:bg-red-700 text-white font-semibold py-2.5 px-4 rounded-xl transition shadow-sm">
+            Xem danh sách
+          </a>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+          <div>
+            <h2 class="text-xl font-bold text-slate-800 mb-1">Phần 3</h2>
+            <p class="text-slate-500 text-sm mb-6">Từ 201 - 300</p>
+          </div>
+          <a href="hsk1-201-300.html" class="w-full text-center bg-red-600 hover:bg-red-700 text-white font-semibold py-2.5 px-4 rounded-xl transition shadow-sm">
+            Xem danh sách
+          </a>
+        </div>
       </div>
-      <div class="btn-arrow">Xem danh sách →</div>
-    </a>
 
-    <!-- Trang con 2 -->
-    <a href="hsk1-2.html" class="card-page">
-      <div class="info">
-        <h2>Phần 2: Từ 101 - 200</h2>
-        <p>100 từ vựng HSK 1 tiếp theo</p>
-      </div>
-      <div class="btn-arrow">Xem danh sách →</div>
-    </a>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+          <div>
+            <h2 class="text-xl font-bold text-slate-800 mb-1">Phần 4</h2>
+            <p class="text-slate-500 text-sm mb-6">Từ 301 - 400</p>
+          </div>
+          <a href="hsk1-301-400.html" class="w-full text-center bg-red-600 hover:bg-red-700 text-white font-semibold py-2.5 px-4 rounded-xl transition shadow-sm">
+            Xem danh sách
+          </a>
+        </div>
 
-    <!-- Trang con 3 -->
-    <a href="hsk1-3.html" class="card-page">
-      <div class="info">
-        <h2>Phần 3: Từ 201 - 300</h2>
-        <p>100 từ vựng HSK 1 tiếp theo</p>
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+          <div>
+            <h2 class="text-xl font-bold text-slate-800 mb-1">Phần 5</h2>
+            <p class="text-slate-500 text-sm mb-6">Từ 401 - 500</p>
+          </div>
+          <a href="hsk1-401-500.html" class="w-full text-center bg-red-600 hover:bg-red-700 text-white font-semibold py-2.5 px-4 rounded-xl transition shadow-sm">
+            Xem danh sách
+          </a>
+        </div>
       </div>
-      <div class="btn-arrow">Xem danh sách →</div>
-    </a>
+    </div>
+  </main>
 
-    <!-- Trang con 4 -->
-    <a href="hsk1-4.html" class="card-page">
-      <div class="info">
-        <h2>Phần 4: Từ 301 - 400</h2>
-        <p>100 từ vựng HSK 1 tiếp theo</p>
-      </div>
-      <div class="btn-arrow">Xem danh sách →</div>
-    </a>
-
-    <!-- Trang con 5 -->
-    <a href="hsk1-5.html" class="card-page">
-      <div class="info">
-        <h2>Phần 5: Từ 401 - 500</h2>
-        <p>100 từ vựng HSK 1 mở rộng</p>
-      </div>
-      <div class="btn-arrow">Xem danh sách →</div>
-    </a>
-  </div>
+  <footer class="bg-slate-800 text-slate-400 py-6 text-center text-sm border-t border-slate-700">
+    <p>© 2026 Website Học Từ Vựng HSK. Lưu trữ trên GitHub Repository.</p>
+  </footer>
 
 </body>
 </html>
