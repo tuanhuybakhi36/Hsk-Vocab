@@ -1,109 +1,325 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trang Chủ - Học Từ Vựng HSK</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Đăng nhập & Đăng ký - Học Từ Vựng HSK</title>
+  <style>
+    :root {
+      --primary-color: #d32f2f;      /* Màu đỏ chủ đạo */
+      --primary-hover: #b71c1c;      /* Đỏ đậm khi hover */
+      --bg-color: #f8f9fa;           /* Nền xám nhẹ */
+      --white: #ffffff;
+      --text-color: #333333;
+      --gray-light: #eeeeee;
+      --gray-text: #777777;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .auth-container {
+      background-color: var(--white);
+      width: 100%;
+      max-width: 420px;
+      padding: 30px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border-top: 5px solid var(--primary-color);
+    }
+
+    .auth-header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .auth-header h1 {
+      color: var(--primary-color);
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .auth-header p {
+      color: var(--gray-text);
+      font-size: 14px;
+    }
+
+    /* Tab Switcher giữa Đăng Nhập & Đăng Ký */
+    .tab-buttons {
+      display: flex;
+      border-bottom: 2px solid var(--gray-light);
+      margin-bottom: 20px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 10px;
+      background: none;
+      border: none;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--gray-text);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .tab-btn.active {
+      color: var(--primary-color);
+      border-bottom: 3px solid var(--primary-color);
+    }
+
+    /* Form Styles */
+    .auth-form {
+      display: none;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .auth-form.active {
+      display: flex;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .form-group label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-color);
+    }
+
+    .form-group input {
+      padding: 12px 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus {
+      border-color: var(--primary-color);
+    }
+
+    .btn-submit {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background-color 0.2s;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--primary-hover);
+    }
+
+    /* Thông báo lỗi / thành công */
+    .message {
+      font-size: 13px;
+      text-align: center;
+      margin-top: 12px;
+      display: none;
+    }
+    .message.error {
+      color: #d32f2f;
+      display: block;
+    }
+    .message.success {
+      color: #388e3c;
+      display: block;
+    }
+
+    /* Phần Admin đặt nhỏ gọn bên dưới */
+    .admin-section {
+      margin-top: 25px;
+      padding-top: 15px;
+      border-top: 1px dashed #ddd;
+      text-align: center;
+    }
+
+    .admin-link {
+      color: var(--gray-text);
+      font-size: 12px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .admin-link:hover {
+      color: var(--primary-color);
+      text-decoration: underline;
+    }
+  </style>
 </head>
-<body class="bg-slate-50 min-h-screen text-slate-800 flex flex-col font-sans">
+<body>
 
-  <!-- NAVBAR TOP MENU -->
-  <header class="bg-red-700 text-white shadow-md sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-      <a href="index.html" class="flex items-center gap-2 font-bold text-xl hover:text-red-100 transition">
-        <span class="bg-white text-red-700 px-2.5 py-1 rounded-lg text-lg font-black shadow-sm">HSK</span>
-        <span>Học Từ Vựng</span>
+  <div class="auth-container">
+    <div class="auth-header">
+      <h1>Học Từ Vựng HSK</h1>
+      <p>Chào mừng bạn! Vui lòng đăng nhập để bắt đầu học.</p>
+    </div>
+
+    <!-- Nút chuyển Tab Đăng Nhập / Đăng Ký -->
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab('login')">Đăng Nhập</button>
+      <button class="tab-btn" onclick="switchTab('register')">Đăng Ký</button>
+    </div>
+
+    <!-- Form Đăng Nhập -->
+    <form id="loginForm" class="auth-form active">
+      <div class="form-group">
+        <label for="loginUser">Tài khoản / Email</label>
+        <input type="text" id="loginUser" placeholder="Nhập tài khoản" required />
+      </div>
+      <div class="form-group">
+        <label for="loginPassword">Mật khẩu</label>
+        <input type="password" id="loginPassword" placeholder="Nhập mật khẩu" required />
+      </div>
+      <button type="submit" id="submitBtn" class="btn-submit">Đăng Nhập</button>
+    </form>
+
+    <!-- Form Đăng Ký (Để giao diện trông đầy đủ) -->
+    <form id="registerForm" class="auth-form">
+      <div class="form-group">
+        <label for="regName">Họ và Tên</label>
+        <input type="text" id="regName" placeholder="Tên hiển thị của bạn" required />
+      </div>
+      <div class="form-group">
+        <label for="regUser">Tài khoản</label>
+        <input type="text" id="regUser" placeholder="Tạo tên tài khoản" required />
+      </div>
+      <div class="form-group">
+        <label for="regPassword">Mật khẩu</label>
+        <input type="password" id="regPassword" placeholder="Nhập mật khẩu" required />
+      </div>
+      <button type="submit" class="btn-submit">Tạo Tài Khoản</button>
+    </form>
+
+    <!-- Thông báo lỗi hoặc thành công -->
+    <div id="authMessage" class="message"></div>
+
+    <!-- Phần Admin nhỏ phía dưới cùng -->
+    <div class="admin-section">
+      <a class="admin-link" id="adminLoginToggle" onclick="enableAdminMode()">
+        🔑 Đăng nhập với tư cách là Vua (Admin)
       </a>
-      <nav class="flex gap-2">
-        <a href="index.html" class="px-3.5 py-2 rounded-lg font-medium text-sm transition bg-red-800 text-white shadow-inner">Trang Chủ</a>
-        <a href="hsk1.html" class="px-3.5 py-2 rounded-lg font-medium text-sm transition text-red-100 hover:bg-red-600 hover:text-white">HSK 1</a>
-        <a href="hsk2.html" class="px-3.5 py-2 rounded-lg font-medium text-sm transition text-red-100 hover:bg-red-600 hover:text-white">HSK 2</a>
-        <a href="hsk3.html" class="px-3.5 py-2 rounded-lg font-medium text-sm transition text-red-100 hover:bg-red-600 hover:text-white">HSK 3</a>
-      </nav>
     </div>
-  </header>
+  </div>
 
-  <!-- MAIN CONTENT -->
-  <main class="max-w-5xl mx-auto px-4 py-12 flex-grow w-full">
-    <!-- HERO INTRO -->
-    <section class="text-center mb-12">
-      <span class="inline-block bg-red-100 text-red-700 font-semibold px-4 py-1.5 rounded-full text-sm mb-4 border border-red-200">
-        Luyện Tập & Ôn Thi HSK Effective
-      </span>
-      <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3 tracking-tight">
-        Lựa Chọn Cấp Độ Học Từ Vựng
-      </h1>
-      <p class="text-slate-600 max-w-xl mx-auto text-base">
-        Chọn trình độ HSK phù hợp để bắt đầu luyện tập danh sách từ vựng và bài tập tương ứng.
-      </p>
-    </section>
+  <script>
+    // ⚙️ THÔNG TIN TÀI KHOẢN ĐƯỢC CẤU HÌNH TẠI ĐÂY (Sau này muốn đổi cứ đổi ở đây nhé)
+    const VALID_USER = "sieubakhi123";
+    const VALID_PASS = "12367";
 
-    <!-- GRID LEVEL CHOICES (2 TREN, 1 DUOI) -->
-    <div class="space-y-6">
-      <!-- HÀNG 1: HSK 1 & HSK 2 (2 Ô) -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- HSK 1 CARD -->
-        <div class="bg-white border-2 border-red-100 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-red-500 transition duration-200 flex flex-col justify-between">
-          <div>
-            <div class="flex justify-between items-center mb-4">
-              <span class="bg-red-600 text-white font-bold text-xs uppercase px-3 py-1 rounded-md tracking-wider">Cơ bản</span>
-              <span class="text-slate-500 text-sm font-medium">500 Từ vựng</span>
-            </div>
-            <h2 class="text-2xl font-bold text-slate-800 mb-2">HSK Cấp Độ 1</h2>
-            <p class="text-slate-600 text-sm mb-6 leading-relaxed">
-              Dành cho người mới bắt đầu. Nắm vững các từ vựng và mẫu câu cơ bản nhất trong giao tiếp hàng ngày.
-            </p>
-          </div>
-          <a href="hsk1.html" class="w-full text-center bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-4 rounded-xl transition shadow-sm hover:shadow">
-            Vào Học HSK 1 &rarr;
-          </a>
-        </div>
+    let isAdminMode = false;
 
-        <!-- HSK 2 CARD -->
-        <div class="bg-white border-2 border-slate-100 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-red-500 transition duration-200 flex flex-col justify-between">
-          <div>
-            <div class="flex justify-between items-center mb-4">
-              <span class="bg-red-600 text-white font-bold text-xs uppercase px-3 py-1 rounded-md tracking-wider">Sơ cấp</span>
-              <span class="text-slate-500 text-sm font-medium">1272 Từ vựng</span>
-            </div>
-            <h2 class="text-2xl font-bold text-slate-800 mb-2">HSK Cấp Độ 2</h2>
-            <p class="text-slate-600 text-sm mb-6 leading-relaxed">
-              Mở rộng vốn từ vựng sơ cấp, cải thiện khả năng giao tiếp phản xạ về các chủ đề quen thuộc.
-            </p>
-          </div>
-          <a href="hsk2.html" class="w-full text-center bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-4 rounded-xl transition shadow-sm hover:shadow">
-            Vào Học HSK 2 &rarr;
-          </a>
-        </div>
-      </div>
+    // Chuyển đổi giữa Đăng nhập / Đăng ký
+    function switchTab(tab) {
+      const loginForm = document.getElementById('loginForm');
+      const registerForm = document.getElementById('registerForm');
+      const buttons = document.querySelectorAll('.tab-btn');
+      clearMessage();
 
-      <!-- HÀNG 2: HSK 3 (1 Ô CĂN GIỮA) -->
-      <div class="max-w-md mx-auto">
-        <!-- HSK 3 CARD -->
-        <div class="bg-white border-2 border-slate-100 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-red-500 transition duration-200 flex flex-col justify-between">
-          <div>
-            <div class="flex justify-between items-center mb-4">
-              <span class="bg-red-600 text-white font-bold text-xs uppercase px-3 py-1 rounded-md tracking-wider">Trung cấp</span>
-              <span class="text-slate-500 text-sm font-medium">2245 Từ vựng</span>
-            </div>
-            <h2 class="text-2xl font-bold text-slate-800 mb-2">HSK Cấp Độ 3</h2>
-            <p class="text-slate-600 text-sm mb-6 leading-relaxed">
-              Hoàn thiện nền tảng từ vựng trung cấp, giao tiếp tự tin hơn trong công việc và cuộc sống.
-            </p>
-          </div>
-          <a href="hsk3.html" class="w-full text-center bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-4 rounded-xl transition shadow-sm hover:shadow">
-            Vào Học HSK 3 &rarr;
-          </a>
-        </div>
-      </div>
-    </div>
-  </main>
+      if (tab === 'login') {
+        loginForm.classList.add('active');
+        registerForm.classList.remove('active');
+        buttons[0].classList.add('active');
+        buttons[1].classList.remove('active');
+      } else {
+        registerForm.classList.add('active');
+        loginForm.classList.remove('active');
+        buttons[1].classList.add('active');
+        buttons[0].classList.remove('active');
+      }
+    }
 
-  <!-- FOOTER -->
-  <footer class="bg-slate-800 text-slate-400 py-6 text-center text-sm border-t border-slate-700">
-    <p>© 2026 Website Học Từ Vựng HSK. Lưu trữ trên GitHub Repository.</p>
-  </footer>
+    // Bật/tắt chế độ Đăng nhập Admin
+    function enableAdminMode() {
+      isAdminMode = !isAdminMode;
+      const toggleBtn = document.getElementById('adminLoginToggle');
+      const submitBtn = document.getElementById('submitBtn');
+      
+      switchTab('login');
 
+      if (isAdminMode) {
+        toggleBtn.innerText = "⬅️ Quay lại đăng nhập Học viên";
+        toggleBtn.style.color = "#d32f2f";
+        submitBtn.innerText = "Đăng Nhập Admin";
+      } else {
+        toggleBtn.innerText = "🔑 Đăng nhập với tư cách Quản trị viên (Admin)";
+        toggleBtn.style.color = "var(--gray-text)";
+        submitBtn.innerText = "Đăng Nhập";
+      }
+    }
+
+    // Hiển thị thông báo
+    function showMessage(msg, isError = true) {
+      const msgEl = document.getElementById('authMessage');
+      msgEl.innerText = msg;
+      msgEl.className = `message ${isError ? 'error' : 'success'}`;
+    }
+
+    function clearMessage() {
+      const msgEl = document.getElementById('authMessage');
+      msgEl.className = 'message';
+      msgEl.innerText = '';
+    }
+
+    // XỬ LÝ ĐĂNG NHẬP
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const username = document.getElementById('loginUser').value.trim();
+      const password = document.getElementById('loginPassword').value;
+
+      // Kiểm tra tài khoản và mật khẩu
+      if (username === VALID_USER && password === VALID_PASS) {
+        if (isAdminMode) {
+          showMessage("Đăng nhập Admin thành công!", false);
+        } else {
+          showMessage("Đăng nhập thành công! Đang chuyển hướng...", false);
+        }
+
+        // Chuyển sang trang hsk.html sau 1 giây
+        setTimeout(() => {
+          window.location.href = "hsk.html";
+        }, 1000);
+
+      } else {
+        showMessage("Tài khoản hoặc mật khẩu không chính xác!");
+      }
+    });
+
+    // XỬ LÝ ĐĂNG KÝ (Mô phỏng thông báo thành công cho vui)
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      showMessage("Đăng ký thành công! Hãy dùng tài khoản chung để đăng nhập nhé.", false);
+      setTimeout(() => {
+        switchTab('login');
+      }, 1500);
+    });
+  </script>
 </body>
 </html>
